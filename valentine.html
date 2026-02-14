@@ -2,121 +2,161 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TS GROUP - Amor y Amistad</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ff758f, #ff8fa3, #ffb3c1);
+  background: linear-gradient(180deg, #ff758f, #ff8fa3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
+  padding: 20px;
   color: #800f2f;
+  overflow-x: hidden;
 }
 
 h1 {
   color: white;
-  margin-bottom: 20px;
   text-align: center;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  max-width: 1000px;
-}
-
-button {
-  background: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #c9184a;
-  color: white;
-  transform: scale(1.05);
+  font-size: 22px;
 }
 
 .music-btn {
-  margin-top: 20px;
+  width: 90%;
+  max-width: 350px;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
   background: #800f2f;
   color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 15px 0;
 }
 
-.music-btn:hover {
-  background: #5a0c20;
+.container {
+  width: 100%;
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  transition: 0.5s ease;
 }
 
-.message-box {
-  margin-top: 30px;
-  background: white;
-  padding: 30px;
+button.name-btn {
+  padding: 12px;
+  border: none;
   border-radius: 20px;
-  max-width: 750px;
+  background: white;
+  font-size: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.15);
+}
+
+button.name-btn:active {
+  transform: scale(0.95);
+}
+
+/* Pantalla mensaje */
+.message-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
   text-align: center;
-  box-shadow: 0 0 30px rgba(0,0,0,.2);
+  transform: translateY(100%);
+  transition: 0.6s ease;
+}
+
+.message-screen.active {
+  transform: translateY(0);
+}
+
+.message-text {
   font-size: 18px;
-  min-height: 120px;
-  transition: 0.4s;
+  margin-bottom: 25px;
+  color: #800f2f;
+}
+
+.back-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #ff758f;
+  color: white;
+  font-weight: 600;
 }
 
 </style>
 </head>
 <body>
 
-<h1>💖 Feliz Día del Amor y la Amistad - TS GROUP 💖</h1>
+<div style="text-align:center; padding:20px;">
+  <h1 style="font-size:26px;">
+    💖 Feliz Día del Amor y la Amistad 💖<br>TS GROUP
+  </h1>
 
-
-<div class="container">
-  <button onclick="showMessage('andrea')">Andrea</button>
-  <button onclick="showMessage('daniel')">Daniel Delgado</button>
-  <button onclick="showMessage('raiberth')">Raiberth</button>
-  <button onclick="showMessage('elvis')">Elvis</button>
-  <button onclick="showMessage('liz')">Liz</button>
-  <button onclick="showMessage('nazareth')">Nazareth</button>
-  <button onclick="showMessage('omar')">Omar Daniel</button>
-  <button onclick="showMessage('edward')">Edward</button>
-  <button onclick="showMessage('kevin')">Kevin</button>
-  <button onclick="showMessage('joan')">Pipa</button>
-  <button onclick="showMessage('maeky')">Maeky</button>
-  <button onclick="showMessage('miguel')">Miguel</button>
-  <button onclick="showMessage('jeefrey')">Jeefrey</button>
-  <button onclick="showMessage('joseluis')">Jose Luis</button>
-  <button onclick="showMessage('essly')">Essly</button>
-  <button onclick="showMessage('marco')">Marco</button>
-  <button onclick="showMessage('carlos')">Carlos</button>
-  <button onclick="showMessage('belys')">Belys</button>
-  <button onclick="showMessage('marle')">Marle</button>
-  <button onclick="showMessage('alfredo')">Alfredo</button>
-  <button onclick="showMessage('gherson')">Gherson</button>
-  <button onclick="showMessage('jaimary')">Jaimary</button>
-  <button onclick="showMessage('irma')">Irma</button>
-  <button onclick="showMessage('nebraska')">Nebraska</button>
-  <button onclick="showMessage('genesis')">Genesis</button>
-  <button onclick="showMessage('ana')">Ana</button>
+  <p style="font-size:18px; margin-top:15px; color:#ffffff;">
+    ✨ Presiona tu nombre y descubre un mensaje especial preparado para ti ✨
+  </p>
 </div>
 
-<div class="message-box" id="messageBox">
-  Haz clic en tu nombre para descubrir tu mensaje especial 💌
+
+
+<div class="container" id="nameContainer">
+
+<button class="name-btn" onclick="showMessage('andrea')">Andrea</button>
+<button class="name-btn" onclick="showMessage('daniel')">Daniel</button>
+<button class="name-btn" onclick="showMessage('raiberth')">Raiberth</button>
+<button class="name-btn" onclick="showMessage('elvis')">Elvis</button>
+<button class="name-btn" onclick="showMessage('liz')">Liz</button>
+<button class="name-btn" onclick="showMessage('nazareth')">Nazareth</button>
+<button class="name-btn" onclick="showMessage('omar')">Omar</button>
+<button class="name-btn" onclick="showMessage('edward')">Edward</button>
+<button class="name-btn" onclick="showMessage('kevin')">Kevin</button>
+<button class="name-btn" onclick="showMessage('joan')">Joan</button>
+<button class="name-btn" onclick="showMessage('maeky')">Maeky</button>
+<button class="name-btn" onclick="showMessage('miguel')">Miguel</button>
+<button class="name-btn" onclick="showMessage('jeefrey')">Jeefrey</button>
+<button class="name-btn" onclick="showMessage('joseluis')">Jose Luis</button>
+<button class="name-btn" onclick="showMessage('essly')">Essly</button>
+<button class="name-btn" onclick="showMessage('marco')">Marco</button>
+<button class="name-btn" onclick="showMessage('carlos')">Carlos</button>
+<button class="name-btn" onclick="showMessage('belys')">Belys</button>
+<button class="name-btn" onclick="showMessage('marle')">Marle</button>
+<button class="name-btn" onclick="showMessage('alfredo')">Alfredo</button>
+<button class="name-btn" onclick="showMessage('gherson')">Gherson</button>
+<button class="name-btn" onclick="showMessage('jaimary')">Jaimary</button>
+<button class="name-btn" onclick="showMessage('irma')">Irma</button>
+<button class="name-btn" onclick="showMessage('nebraska')">Nebraska</button>
+<button class="name-btn" onclick="showMessage('genesis')">Genesis</button>
+<button class="name-btn" onclick="showMessage('ana')">Ana</button>
+<button class="name-btn" onclick="showMessage('vallejos')">Vallejos Daniel</button>
+
 </div>
 
-<!-- Botón de Música -->
+<!-- Pantalla completa del mensaje -->
+<div class="message-screen" id="messageScreen">
+  <div class="message-text" id="messageText"></div>
+  <button class="back-btn" onclick="goBack()">Volver</button>
+</div>
+
 <button class="music-btn" onclick="toggleMusic()">▶ Reproducir Música</button>
-<br/><br/><br/>
-<!-- Audio -->
+
+
 <audio id="bgMusic" loop>
-  <source src="audio_78e73db5b7.mp3" type="audio/mpeg">
+<source src="audio_78e73db5b7.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -124,32 +164,33 @@ button:hover {
 const cierre = " 💖 Feliz Día de Amor y Amistad, disfruta con los tuyos. 💖";
 
 const messages = {
-andrea: "Andrea, tu espíritu emprendedor y tu alegría contagiosa iluminan cada proyecto. Eres energía positiva y determinación en acción." + cierre,
-daniel: "Daniel Delgado, tu inteligencia y compromiso en finanzas sostienen grandes sueños. Gracias por tu enfoque y responsabilidad." + cierre,
-raiberth: "Raiberth, eres el alma de la fiesta y la sonrisa constante del equipo. Tu alegría hace que cada día sea especial." + cierre,
-elvis: "Elvis, tu sonrisa motivadora inspira a todos. Gracias por transmitir buena energía y optimismo." + cierre,
-liz: "Liz, tu belleza interior y exterior reflejan elegancia y nobleza. Eres luz en nuestro equipo." + cierre,
-nazareth: "Nazareth, tu alegría y chispa natural llenan cada espacio de entusiasmo. Nunca dejes de brillar." + cierre,
-omar: "Omar Daniel, tu elocuencia y enfoque muestran liderazgo y compromiso. Eres disciplina con alegría." + cierre,
-edward: "Edward, tu sonrisa y ese pulgar arriba motivan más de lo que imaginas. Siempre transmites seguridad y apoyo." + cierre,
-kevin: "Kevin, tu silencio guarda sabiduría. Eres enfocado, capaz y una gran persona." + cierre,
-joan: "`Pipa, tu juventud y elocuencia llenan de frescura cada momento. Sigue brillando con tu alegría." + cierre,
-maeky: "Maeky, disciplinado y lleno de historias que inspiran. Tu constancia deja huella." + cierre,
-miguel: "Miguel, tu inteligencia fortalece cada proyecto. Gracias por aportar claridad y visión." + cierre,
-jeefrey: "Jeefrey, alto en estatura y en inteligencia. Tu alegría suma siempre al equipo." + cierre,
-joseluis: "José Luis, tu corazón es más grande que cualquier medida. Tu bondad es invaluable." + cierre,
-essly: "Essly, jugador dentro y fuera de la cancha. Divertido, elocuente y con gran sonrisa." + cierre,
-marco: "Marco, elegancia y felicidad en equilibrio perfecto. Siempre proyectas seguridad y estilo." + cierre,
-carlos: "Carlos, emprendedor y motivador. Tu sonrisa impulsa sueños y proyectos." + cierre,
-belys: "Belys, tu sonrisa tierna y tu amistad sincera hacen la diferencia. Gracias por ser tan buena compañera." + cierre,
-marle: "Marle, líder natural, arquitecta de sueños y proyectos. Tu elocuencia inspira confianza." + cierre,
-alfredo: "Alfredo, ingeniero de sonrisa firme y energía positiva. Tu alegría construye grandes cosas." + cierre,
-gherson: "Gherson, especialista y profesional admirable. Tu capacidad técnica fortalece nuestro equipo." + cierre,
-jaimary: "Jaimary, gran mamá y gran profesional. Tu alegría y carisma iluminan cada espacio." + cierre,
-irma: "Irma, firme en resultados y divertida en el día a día. Tu sonrisa equilibra el departamento legal." + cierre,
-nebraska: "Nebraska, sabiduría y liderazgo en administración. Tu serenidad inspira confianza." + cierre,
-genesis: "Genesis, alegría pura y energía contagiosa. Siempre lista para bailar y sonreír." + cierre,
-ana: "Ana, belleza, alegría y dulzura en una sola persona. Gracias por tu energía positiva." + cierre
+andrea: "Andrea, tu espíritu emprendedor y tu alegría contagiosa iluminan cada proyecto." + cierre,
+daniel: "Daniel Delgado, tu inteligencia y compromiso en finanzas sostienen grandes sueños." + cierre,
+raiberth: "Raiberth, eres el alma de la fiesta y la sonrisa constante del equipo." + cierre,
+elvis: "Elvis, tu sonrisa motivadora inspira a todos." + cierre,
+liz: "Liz, tu belleza interior y exterior reflejan elegancia y nobleza." + cierre,
+nazareth: "Nazareth, tu alegría y chispa natural llenan cada espacio de entusiasmo." + cierre,
+omar: "Omar Daniel, tu elocuencia y enfoque muestran liderazgo y compromiso." + cierre,
+edward: "Edward, tu sonrisa y ese pulgar arriba motivan más de lo que imaginas." + cierre,
+kevin: "Kevin, tu silencio guarda sabiduría y enfoque." + cierre,
+joan: "Joan, tu juventud y elocuencia llenan de frescura cada momento." + cierre,
+maeky: "Maeky, disciplinado y constante, dejas huella con tu dedicación." + cierre,
+miguel: "Miguel, tu inteligencia fortalece cada proyecto." + cierre,
+jeefrey: "Jeefrey, alto en energía y en inteligencia." + cierre,
+joseluis: "José Luis, tu corazón es más grande que cualquier medida." + cierre,
+essly: "Essly, jugador dentro y fuera de la cancha, siempre alegre." + cierre,
+marco: "Marco, elegancia y felicidad en equilibrio perfecto." + cierre,
+carlos: "Carlos, motivador y emprendedor, impulsas sueños." + cierre,
+belys: "Belys, tu sonrisa tierna hace la diferencia." + cierre,
+marle: "Marle, líder natural y arquitecta de grandes sueños." + cierre,
+alfredo: "Alfredo, ingeniero de sonrisa firme y energía positiva." + cierre,
+gherson: "Gherson, profesional admirable y especialista excepcional." + cierre,
+jaimary: "Jaimary, gran mamá y gran profesional llena de alegría." + cierre,
+irma: "Irma, firme en resultados y divertida en el día a día." + cierre,
+nebraska: "Nebraska, sabiduría y liderazgo en cada decisión." + cierre,
+genesis: "Genesis, energía contagiosa y siempre lista para sonreír." + cierre,
+ana: "Ana, belleza, alegría y dulzura que iluminan el equipo." + cierre,
+vallejos: "Como te va a eliminar un hospital 2 de mayo, DON P..." + cierre
 };
 
 const music = document.getElementById("bgMusic");
@@ -166,19 +207,17 @@ function toggleMusic(){
 }
 
 function showMessage(name){
-  const box = document.getElementById("messageBox");
-
-  // Reproducir música automáticamente si está pausada
   if(music.paused){
     music.play();
     musicBtn.textContent = "⏸ Pausar Música";
   }
 
-  box.style.opacity = 0;
-  setTimeout(() => {
-    box.innerHTML = messages[name];
-    box.style.opacity = 1;
-  }, 200);
+  document.getElementById("messageText").innerText = messages[name];
+  document.getElementById("messageScreen").classList.add("active");
+}
+
+function goBack(){
+  document.getElementById("messageScreen").classList.remove("active");
 }
 
 </script>
