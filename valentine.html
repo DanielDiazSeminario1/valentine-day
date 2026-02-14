@@ -4,220 +4,202 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TS GROUP - Amor y Amistad</title>
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(180deg, #ff758f, #ff8fa3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  color: #800f2f;
-  overflow-x: hidden;
+:root {
+  --heart: #fef7ff;
+  --bg: #f4e2ff;
 }
 
-h1 {
-  color: white;
-  text-align: center;
-  font-size: 22px;
-}
-
-.music-btn {
-  width: 90%;
-  max-width: 350px;
-  padding: 12px;
-  border: none;
-  border-radius: 30px;
-  background: #800f2f;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  margin: 15px 0;
-}
-
-.container {
-  width: 100%;
-  max-width: 400px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  transition: 0.5s ease;
-}
-
-button.name-btn {
-  padding: 12px;
-  border: none;
-  border-radius: 20px;
-  background: white;
-  font-size: 14px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.15);
-}
-
-button.name-btn:active {
-  transform: scale(0.95);
-}
-
-/* Pantalla mensaje */
-.message-screen {
+/* Fondo animado */
+.heart-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 25px;
-  text-align: center;
-  transform: translateY(100%);
-  transition: 0.6s ease;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--bg);
+  background-size: 100px 100px;
+  background-repeat: repeat;
+  background-image: 
+    radial-gradient(circle at 37% 42%, var(--heart) 17%, transparent 17%),
+    radial-gradient(circle at 63% 42%, var(--heart) 17%, transparent 17%),
+    linear-gradient(to top left, var(--bg) 37%, transparent 37%),
+    linear-gradient(to top right, var(--bg) 37%, transparent 37%),
+    radial-gradient(circle at 50% 58%, var(--heart) 30%, transparent 30%);
+  animation: heartAnim 15s linear infinite;
 }
 
-.message-screen.active {
-  transform: translateY(0);
+@keyframes heartAnim {
+  from { background-position: 0 0; }
+  to { background-position: 100px 100px; }
 }
 
-.message-text {
-  font-size: 18px;
-  margin-bottom: 25px;
-  color: #800f2f;
+/* Contenido principal */
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  padding:20px;
+  color:#6a0572;
 }
 
-.back-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  background: #ff758f;
-  color: white;
-  font-weight: 600;
+h1{
+  font-size:22px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:10px;
+  max-width:600px;
+  margin:20px auto;
+}
+
+.grid button{
+  padding:12px;
+  border:none;
+  border-radius:20px;
+  background:white;
+  color:#6a0572;
+  font-weight:bold;
+  font-size:14px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+
+#mensajeContainer{
+  display:none;
+  background:white;
+  max-width:600px;
+  margin:20px auto;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  max-height:80vh;
+  overflow-y:auto;
+}
+
+#mensajeTexto{
+  line-height:1.6;
+}
+
+#volver{
+  margin-top:20px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#6a0572;
+  color:white;
+  font-weight:bold;
 }
 
 </style>
+
 </head>
 <body>
+<div class="heart-bg"></div>
+<h1>💖 Feliz Día del Amor y la Amistad 💖<br>TS GROUP</h1>
+<p>✨ Presiona tu nombre y descubre tu mensaje especial ✨</p>
 
-<div style="text-align:center; padding:20px;">
-  <h1 style="font-size:26px;">
-    💖 Feliz Día del Amor y la Amistad 💖<br>TS GROUP
-  </h1>
+<div class="grid" id="listaNombres">
 
-  <p style="font-size:18px; margin-top:15px; color:#ffffff;">
-    ✨ Presiona tu nombre y descubre un mensaje especial preparado para ti ✨
-  </p>
+<button onclick="mostrarMensaje('Andrea')">Andrea</button>
+<button onclick="mostrarMensaje('Daniel Delgado')">Daniel Delgado</button>
+<button onclick="mostrarMensaje('Raiberth')">Raiberth</button>
+
+<button onclick="mostrarMensaje('Elvis')">Elvis</button>
+<button onclick="mostrarMensaje('Liz')">Liz</button>
+<button onclick="mostrarMensaje('Nazareth')">Nazareth</button>
+
+<button onclick="mostrarMensaje('Omar Daniel')">Omar Daniel</button>
+<button onclick="mostrarMensaje('Edward')">Edward</button>
+<button onclick="mostrarMensaje('Kevin')">Kevin</button>
+
+<button onclick="mostrarMensaje('Joan')">Joan</button>
+<button onclick="mostrarMensaje('Maeky')">Maeky</button>
+<button onclick="mostrarMensaje('Miguel')">Miguel</button>
+
+<button onclick="mostrarMensaje('Jeefrey')">Jeefrey</button>
+<button onclick="mostrarMensaje('Jose Luis')">Jose Luis</button>
+<button onclick="mostrarMensaje('Essly')">Essly</button>
+
+<button onclick="mostrarMensaje('Marco')">Marco</button>
+<button onclick="mostrarMensaje('Carlos')">Carlos</button>
+<button onclick="mostrarMensaje('Belys')">Belys</button>
+
+<button onclick="mostrarMensaje('Marle')">Marle</button>
+<button onclick="mostrarMensaje('Alfredo')">Alfredo</button>
+<button onclick="mostrarMensaje('Gherson')">Gherson</button>
+
+<button onclick="mostrarMensaje('Jaimary')">Jaimary</button>
+<button onclick="mostrarMensaje('Irma')">Irma</button>
+<button onclick="mostrarMensaje('Nebraska')">Nebraska</button>
+
+<button onclick="mostrarMensaje('Genesis')">Genesis</button>
+<button onclick="mostrarMensaje('Ana')">Ana</button>
+<button onclick="mostrarMensaje('Jhon Brizuela')">Jhon Brizuela</button>
+
+<button onclick="mostrarMensaje('vallejos')">Vallejos</button>
+<button onclick="mostrarMensaje('Gregoris')">Gregoris</button>
 </div>
 
-
-
-<div class="container" id="nameContainer">
-
-<button class="name-btn" onclick="showMessage('andrea')">Andrea</button>
-<button class="name-btn" onclick="showMessage('daniel')">Daniel</button>
-<button class="name-btn" onclick="showMessage('raiberth')">Raiberth</button>
-<button class="name-btn" onclick="showMessage('elvis')">Elvis</button>
-<button class="name-btn" onclick="showMessage('liz')">Liz</button>
-<button class="name-btn" onclick="showMessage('nazareth')">Nazareth</button>
-<button class="name-btn" onclick="showMessage('omar')">Omar</button>
-<button class="name-btn" onclick="showMessage('edward')">Edward</button>
-<button class="name-btn" onclick="showMessage('kevin')">Kevin</button>
-<button class="name-btn" onclick="showMessage('joan')">Joan</button>
-<button class="name-btn" onclick="showMessage('maeky')">Maeky</button>
-<button class="name-btn" onclick="showMessage('miguel')">Miguel</button>
-<button class="name-btn" onclick="showMessage('jeefrey')">Jeefrey</button>
-<button class="name-btn" onclick="showMessage('joseluis')">Jose Luis</button>
-<button class="name-btn" onclick="showMessage('essly')">Essly</button>
-<button class="name-btn" onclick="showMessage('marco')">Marco</button>
-<button class="name-btn" onclick="showMessage('carlos')">Carlos</button>
-<button class="name-btn" onclick="showMessage('belys')">Belys</button>
-<button class="name-btn" onclick="showMessage('marle')">Marle</button>
-<button class="name-btn" onclick="showMessage('alfredo')">Alfredo</button>
-<button class="name-btn" onclick="showMessage('gherson')">Gherson</button>
-<button class="name-btn" onclick="showMessage('jaimary')">Jaimary</button>
-<button class="name-btn" onclick="showMessage('irma')">Irma</button>
-<button class="name-btn" onclick="showMessage('nebraska')">Nebraska</button>
-<button class="name-btn" onclick="showMessage('genesis')">Genesis</button>
-<button class="name-btn" onclick="showMessage('ana')">Ana</button>
-<button class="name-btn" onclick="showMessage('vallejos')">Vallejos Daniel</button>
-
+<div id="mensajeContainer">
+  <h2 id="titulo"></h2>
+  <p id="mensajeTexto"></p>
+  <button id="volver" onclick="volver()">Volver</button>
 </div>
 
-<!-- Pantalla completa del mensaje -->
-<div class="message-screen" id="messageScreen">
-  <div class="message-text" id="messageText"></div>
-  <button class="back-btn" onclick="goBack()">Volver</button>
-</div>
-
-<button class="music-btn" onclick="toggleMusic()">▶ Reproducir Música</button>
-
-
-<audio id="bgMusic" loop>
-<source src="audio_78e73db5b7.mp3" type="audio/mpeg">
-</audio>
+<audio id="musica" src="musica.mp3"></audio>
 
 <script>
 
-const cierre = " 💖 Feliz Día de Amor y Amistad, disfruta con los tuyos. 💖";
-
-const messages = {
-andrea: "Andrea, tu espíritu emprendedor y tu alegría contagiosa iluminan cada proyecto." + cierre,
-daniel: "Daniel Delgado, tu inteligencia y compromiso en finanzas sostienen grandes sueños." + cierre,
-raiberth: "Raiberth, eres el alma de la fiesta y la sonrisa constante del equipo." + cierre,
-elvis: "Elvis, tu sonrisa motivadora inspira a todos." + cierre,
-liz: "Liz, tu belleza interior y exterior reflejan elegancia y nobleza." + cierre,
-nazareth: "Nazareth, tu alegría y chispa natural llenan cada espacio de entusiasmo." + cierre,
-omar: "Omar Daniel, tu elocuencia y enfoque muestran liderazgo y compromiso." + cierre,
-edward: "Edward, tu sonrisa y ese pulgar arriba motivan más de lo que imaginas." + cierre,
-kevin: "Kevin, tu silencio guarda sabiduría y enfoque." + cierre,
-joan: "Joan, tu juventud y elocuencia llenan de frescura cada momento." + cierre,
-maeky: "Maeky, disciplinado y constante, dejas huella con tu dedicación." + cierre,
-miguel: "Miguel, tu inteligencia fortalece cada proyecto." + cierre,
-jeefrey: "Jeefrey, alto en energía y en inteligencia." + cierre,
-joseluis: "José Luis, tu corazón es más grande que cualquier medida." + cierre,
-essly: "Essly, jugador dentro y fuera de la cancha, siempre alegre." + cierre,
-marco: "Marco, elegancia y felicidad en equilibrio perfecto." + cierre,
-carlos: "Carlos, motivador y emprendedor, impulsas sueños." + cierre,
-belys: "Belys, tu sonrisa tierna hace la diferencia." + cierre,
-marle: "Marle, líder natural y arquitecta de grandes sueños." + cierre,
-alfredo: "Alfredo, ingeniero de sonrisa firme y energía positiva." + cierre,
-gherson: "Gherson, profesional admirable y especialista excepcional." + cierre,
-jaimary: "Jaimary, gran mamá y gran profesional llena de alegría." + cierre,
-irma: "Irma, firme en resultados y divertida en el día a día." + cierre,
-nebraska: "Nebraska, sabiduría y liderazgo en cada decisión." + cierre,
-genesis: "Genesis, energía contagiosa y siempre lista para sonreír." + cierre,
-ana: "Ana, belleza, alegría y dulzura que iluminan el equipo." + cierre,
-vallejos: "Como te va a eliminar un hospital 2 de mayo, DON P..." + cierre
+const mensajes = {
+"Andrea": "Andrea, tu energía emprendedora y tu alegría iluminan cada espacio donde estás. Tu felicidad contagia e inspira. Feliz día de amor y amistad disfruta con los tuyos.",
+"Daniel Delgado": "Daniel, tu inteligencia y apoyo en finanzas son fundamentales para todos nosotros. Feliz día de amor y amistad disfruta con los tuyos.",
+"Raiberth": "Raiberth, el alma de la fiesta y de las risas del equipo. Feliz día de amor y amistad disfruta con los tuyos.",
+"Elvis": "Elvis, tu sonrisa motivadora transmite confianza y buena vibra. Feliz día de amor y amistad disfruta con los tuyos.",
+"Liz": "Liz, tu belleza y presencia llenan de elegancia cada espacio. Feliz día de amor y amistad disfruta con los tuyos.",
+"Nazareth": "Nazareth, alegre y chispeante, siempre llenando de energía el ambiente. Feliz día de amor y amistad disfruta con los tuyos.",
+"Omar Daniel": "Omar Daniel, elocuente, comprometido y enfocado en cada meta. Feliz día de amor y amistad disfruta con los tuyos.",
+"Edward": "Edward, tu sonrisa y ese pulgar arriba siempre levantan el ánimo. Feliz día de amor y amistad disfruta con los tuyos.",
+"Kevin": "Kevin, callado pero lleno de conocimiento y enfoque. Feliz día de amor y amistad disfruta con los tuyos.",
+"Joan": "Joan, joven, divertida y elocuente, siempre aportando energía positiva. Feliz día de amor y amistad disfruta con los tuyos.",
+"Maeky": "Maeky, disciplinado y lleno de historias interesantes. Feliz día de amor y amistad disfruta con los tuyos.",
+"Miguel": "Miguel, inteligente y siempre aportando valor. Feliz día de amor y amistad disfruta con los tuyos.",
+"Jeefrey": "Jeefrey, alegre e inteligente, siempre destacando con buena actitud. Feliz día de amor y amistad disfruta con los tuyos.",
+"Jose Luis": "Jose Luis, tu corazón es más grande que cualquier medida. Feliz día de amor y amistad disfruta con los tuyos.",
+"Essly": "Essly, divertido, elocuente y con sonrisa contagiosa. Feliz día de amor y amistad disfruta con los tuyos.",
+"Marco": "Marco, elegante y siempre con presencia positiva. Feliz día de amor y amistad disfruta con los tuyos.",
+"Carlos": "Carlos, motivador y emprendedor, siempre con una sonrisa lista. Feliz día de amor y amistad disfruta con los tuyos.",
+"Belys": "Belys, sonrisa tierna y amiga incondicional. Feliz día de amor y amistad disfruta con los tuyos.",
+"Marle": "Marle, líder, divertida y gran arquitecta. Feliz día de amor y amistad disfruta con los tuyos.",
+"Alfredo": "Alfredo, ingeniero brillante y siempre sonriente. Feliz día de amor y amistad disfruta con los tuyos.",
+"Gherson": "Gherson, especialista en frío y gran profesional. Feliz día de amor y amistad disfruta con los tuyos.",
+"Jaimary": "Jaimary, excelente mamá y persona alegre. Feliz día de amor y amistad disfruta con los tuyos.",
+"Irma": "Irma, firme en resultados y siempre con sonrisa. Feliz día de amor y amistad disfruta con los tuyos.",
+"Nebraska": "Nebraska, sabiduría y liderazgo constante. Feliz día de amor y amistad disfruta con los tuyos.",
+"Genesis": "Genesis, bailadora y llena de energía contagiosa. Feliz día de amor y amistad disfruta con los tuyos.",
+"Ana": "Ana, bella y alegre, iluminando cada espacio. Feliz día de amor y amistad disfruta con los tuyos.",
+"Jhon Brizuela": "Jhon, tu compromiso y actitud positiva reflejan fortaleza y dedicación. Feliz día de amor y amistad disfruta con los tuyos.",
+"vallejos": "Como te va a eliminar un hospital 2 de mayo, DON P..., Feliz día de amor y amistad disfruta con los tuyos.",
+"gregoris": "Oe que miras, no te llamas gregoris fuera... fuera.. . FELIZ DIA!"
 };
 
-const music = document.getElementById("bgMusic");
-const musicBtn = document.querySelector(".music-btn");
+function mostrarMensaje(nombre){
+  document.getElementById("listaNombres").style.display="none";
+  document.getElementById("mensajeContainer").style.display="block";
+  document.getElementById("titulo").innerText = nombre;
+  document.getElementById("mensajeTexto").innerText = mensajes[nombre];
 
-function toggleMusic(){
-  if(music.paused){
-    music.play();
-    musicBtn.textContent = "⏸ Pausar Música";
-  } else {
-    music.pause();
-    musicBtn.textContent = "▶ Reproducir Música";
-  }
+  let audio = document.getElementById("musica");
+  audio.play();
 }
 
-function showMessage(name){
-  if(music.paused){
-    music.play();
-    musicBtn.textContent = "⏸ Pausar Música";
-  }
+function volver(){
+  document.getElementById("listaNombres").style.display="grid";
+  document.getElementById("mensajeContainer").style.display="none";
 
-  document.getElementById("messageText").innerText = messages[name];
-  document.getElementById("messageScreen").classList.add("active");
-}
-
-function goBack(){
-  document.getElementById("messageScreen").classList.remove("active");
+  let audio = document.getElementById("musica");
+  audio.pause();
+  audio.currentTime = 0;
 }
 
 </script>
